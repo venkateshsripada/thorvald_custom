@@ -1,0 +1,2 @@
+robot_description
+-DCATKIN_DEVEL_PREFIX=/home/venkatesh/thorvald_custom/devel -DCMAKE_INSTALL_PREFIX=/home/venkatesh/thorvald_custom/install -G Unix Makefiles

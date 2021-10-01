@@ -1,0 +1,8 @@
+prefix=/home/venkatesh/thorvald_custom/install
+
+Name: thorvald_simulation
+Description: Description of thorvald_simulation
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

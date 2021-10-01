@@ -1,0 +1,22 @@
+<launch>
+
+	 <!--Controllers-->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/thorvald"
+        args="
+	joint_state_controller
+	steering0_position_controller
+	wheel0_position_controller
+
+	steering1_position_controller
+	wheel1_position_controller
+
+	steering2_position_controller
+	wheel2_position_controller
+
+	steering3_position_controller
+	wheel3_position_controller
+
+	--timeout 60">
+    </node>
+
+</launch>
