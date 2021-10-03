@@ -1,7 +1,7 @@
 <launch>
     <arg name="gui" default="False" />
     <arg name="model" default="$(find robot_description)/urdf/thorvald_urdf.urdf"/>
-    <arg name="rvizconfig" default="$(find robot_description)/urdf/thorvald_urdf.rviz" />
+    <arg name="rvizconfig" default="$(find robot_description)/rviz/thorvald_model.rviz" />
     
     <!--Gazebo spawnner-->
     <include file="$(find robot_description)/launch/gazebo.launch">
