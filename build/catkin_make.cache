@@ -1,2 +1,2 @@
-robot_description:thorvald_2dnav
+robot_description:thorvald_2dnav:thorvald_gazebo
 -DCATKIN_DEVEL_PREFIX=/home/venkatesh/thorvald_custom/devel -DCMAKE_INSTALL_PREFIX=/home/venkatesh/thorvald_custom/install -G Unix Makefiles

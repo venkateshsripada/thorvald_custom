@@ -495,6 +495,12 @@ thorvald_custom_BINARY_DIR:STATIC=/home/venkatesh/thorvald_custom/build/robot_de
 //Value Computed by CMake
 thorvald_custom_SOURCE_DIR:STATIC=/home/venkatesh/thorvald_custom/src/robot_description
 
+//Value Computed by CMake
+thorvald_gazebo_BINARY_DIR:STATIC=/home/venkatesh/thorvald_custom/build/thorvald_gazebo
+
+//Value Computed by CMake
+thorvald_gazebo_SOURCE_DIR:STATIC=/home/venkatesh/thorvald_custom/src/thorvald_gazebo
+
 //The directory containing a CMake configuration file for thorvald_odom_configuration_dep.
 thorvald_odom_configuration_dep_DIR:PATH=thorvald_odom_configuration_dep_DIR-NOTFOUND
 
@@ -620,7 +626,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
