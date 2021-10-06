@@ -9,9 +9,10 @@ project(thorvald_2dnav)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   move_base
-  thorvald_odom_configuration_dep
-  thorvald_sensor_configuration_dep
-  thorvald_tf_configuration_dep
+#  thorvald_odom_configuration_dep
+#  thorvald_sensor_configuration_dep
+  tf2
+  tf2_ros
 )
 
 ## System dependencies are found with CMake's conventions
