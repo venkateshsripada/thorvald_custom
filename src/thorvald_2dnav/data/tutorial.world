@@ -1,4 +1,4 @@
-include "turtlebot.inc"
+
 
 define floorplan model
 (
@@ -29,16 +29,9 @@ window
 
 floorplan
 (
-  name "tutorial.world"
+  name "tutorialworld"
   bitmap "tutorial1.png"
   size [ 10.0 10.0 2.0 ]
   pose [  5.0  5.0 0.0 0.0 ]
 )
 
-# throw in a robot
-thorvald
-(
-  pose [ 2.0 2.0 0.0 0.0 ]
-  name "thorvald"
-  color "black"
-)

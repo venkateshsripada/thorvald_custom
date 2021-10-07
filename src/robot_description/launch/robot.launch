@@ -1,15 +1,17 @@
 <launch>
     <arg name="gui" default="False" />
-    <arg name="model" default="$(find robot_description)/urdf/thorvald_urdf.urdf"/>
+    <!--<arg name="model" default="$(find robot_description)/urdf/thorvald_urdf.urdf"/>-->
     <arg name="rvizconfig" default="$(find robot_description)/rviz/thorvald_model.rviz" />
+    <arg name="urdf_file" default="$(find xacro)/xacro '$(find robot_description)/urdf/thorvald_urdf.urdf.xacro'"/>
     
-    <!--Gazebo spawnner-->
+    <!--Gazebo spawnner
     <include file="$(find thorvald_gazebo)/launch/thorvald_gazebo.launch">
-      <arg name="model" value="$(arg model)" />
     </include>
+    -->
 
     <!--Robot Model -->
-    <param name="robot_description" textfile="$(arg model)" />
+    <param name="robot_description" command="$(arg urdf_file)"/>
+    <!--<param name="robot_description" textfile="$(arg model)" />-->
     
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
