@@ -16,7 +16,8 @@
       <arg name="3d_sensor"  default="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
 
       <!-- Name of the map to use (without path nor extension) and initial position -->
-      <arg name="map_file"       default=" $(env TURTLEBOT_STAGE_MAP_FILE)"/> <!-- robopark_plan -->
+      <!--<arg name="map_file"       default=" $(env TURTLEBOT_STAGE_MAP_FILE)"/>  robopark_plan -->
+      <arg name="map_file"       default=" $(find thorvald_2dnav)/data/tutorial.yaml"/>
       <arg name="world_file"     default=" $(env TURTLEBOT_STAGE_WORLD_FILE)"/>
       <!--
       <arg name="map_file"       default=" $(find thorvald_2dnav)/data/tutorial.yaml"/>
@@ -33,7 +34,7 @@
       <arg name="debug" default="false"/>
 
       <arg name="urdf_file" default="$(find xacro)/xacro '$(find robot_description)/urdf/thorvald_urdf.urdf.xacro'"/>
-      <arg name="rvizconfig" default="$(find robot_description)/rviz/thorvald_model.rviz" />
+      <arg name="rvizconfig" default="$(find robot_description)/rviz/thorvald_options.rviz" />
 
       <param name="/use_sim_time" value="true"/>
       <!--  ******************** Stage ********************  -->
