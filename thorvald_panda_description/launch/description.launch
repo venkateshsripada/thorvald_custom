@@ -1,8 +1,0 @@
-<!--THIS LAUNCH FILE IS USED ONLY IN THROVALD_GAZEBO.LAUNCH-->
-<launch>
-    <arg name="gui" default="False" />
-    <arg name="urdf_file" default="$(find xacro)/xacro '$(find thorvald_description)/urdf/thorvald_urdf.urdf.xacro'"/>
-
-    <param name="thorvald_description" command="$(arg urdf_file)"/>
-
-</launch>

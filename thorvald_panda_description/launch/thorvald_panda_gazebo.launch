@@ -1,0 +1,47 @@
+<launch>
+
+
+    <!--load thorvald description (urdf) to param server -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find thorvald_panda_description)/urdf/thorvald_model.urdf.xacro'"/>
+    
+    <!-- start Gazebo software -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="use_sim_time" value="false"/>
+    </include>
+
+    <!-- using gazebo_ros package service to spawn the thorvald model in Gazebo -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -model thorvald -param robot_description" respawn="false" output="screen" />    
+  
+    
+    <!-- random joint states  -->
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="false"/>
+    </node> -->
+
+    <!-- for model updates in rviz -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    
+	<!--Load controllers to param server -->
+	<rosparam command="load" file="$(find thorvald_panda_description)/config/joints.yaml" ns="/thorvald"/>
+
+	 <!-- Spawn the controller -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/thorvald"
+        args="
+	joint_state_controller
+	steering0_position_controller
+	wheel0_position_controller
+
+	steering1_position_controller
+	wheel1_position_controller
+
+	steering2_position_controller
+	wheel2_position_controller
+
+	steering3_position_controller
+	wheel3_position_controller
+
+	--timeout 60">
+    </node>
+
+</launch>
