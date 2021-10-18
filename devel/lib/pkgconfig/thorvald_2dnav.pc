@@ -1,8 +1,0 @@
-prefix=/home/venkatesh/thorvald_custom/devel
-
-Name: thorvald_2dnav
-Description: Description of thorvald_2dnav
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

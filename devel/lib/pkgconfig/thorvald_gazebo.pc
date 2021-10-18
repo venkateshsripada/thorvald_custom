@@ -1,8 +1,0 @@
-prefix=/home/venkatesh/thorvald_custom/devel
-
-Name: thorvald_gazebo
-Description: Description of thorvald_gazebo
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

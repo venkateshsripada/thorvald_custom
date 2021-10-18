@@ -1,9 +1,0 @@
-/home/venkatesh/thorvald_custom/install/_setup_util.py
-/home/venkatesh/thorvald_custom/install/env.sh
-/home/venkatesh/thorvald_custom/install/setup.bash
-/home/venkatesh/thorvald_custom/install/local_setup.bash
-/home/venkatesh/thorvald_custom/install/setup.sh
-/home/venkatesh/thorvald_custom/install/local_setup.sh
-/home/venkatesh/thorvald_custom/install/setup.zsh
-/home/venkatesh/thorvald_custom/install/local_setup.zsh
-/home/venkatesh/thorvald_custom/install/.rosinstall

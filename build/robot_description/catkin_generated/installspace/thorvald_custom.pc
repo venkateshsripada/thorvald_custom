@@ -1,8 +1,0 @@
-prefix=/home/venkatesh/thorvald_custom/install
-
-Name: thorvald_custom
-Description: Description of thorvald_custom
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
