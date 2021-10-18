@@ -303,7 +303,7 @@ Visualization Manager:
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: robot_description
+      Robot Description: thorvald_description
       TF Prefix: ""
       Update Interval: 0
       Value: true

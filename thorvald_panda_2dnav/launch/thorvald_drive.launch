@@ -33,8 +33,8 @@
       <arg name="headless" default="false"/>
       <arg name="debug" default="false"/>
 
-      <arg name="urdf_file" default="$(find xacro)/xacro '$(find robot_description)/urdf/thorvald_urdf.urdf.xacro'"/>
-      <arg name="rvizconfig" default="$(find robot_description)/rviz/thorvald_options.rviz" />
+      <arg name="urdf_file" default="$(find xacro)/xacro '$(find thorvald_description)/urdf/thorvald_urdf.urdf.xacro'"/>
+      <arg name="rvizconfig" default="$(find thorvald_description)/rviz/thorvald_options.rviz" />
 
       
       <!--  ******************** Stage ********************  -->
@@ -62,7 +62,7 @@
 
 
       <!--  ***************** Robot Model *****************  -->
-      <include file="$(find robot_description)/launch/robot_gazebo.launch">
+      <include file="$(find thorvald_description)/launch/robot_gazebo.launch">
         <arg name="urdf_file" value="$(arg urdf_file)" />
         <arg name="gui" value="$(arg gui)" />
         <arg name="rvizconfig" value="$(arg rvizconfig)"/>

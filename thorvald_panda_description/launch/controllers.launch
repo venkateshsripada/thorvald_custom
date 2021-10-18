@@ -2,7 +2,7 @@
 
          <!--Load controllers-->
             <rosparam command="load"
-                    file="$(find robot_description)/config/joints.yaml"
+                    file="$(find thorvald_description)/config/joints.yaml"
         	    ns="/thorvald"/>
 
 	 <!--Controllers-->

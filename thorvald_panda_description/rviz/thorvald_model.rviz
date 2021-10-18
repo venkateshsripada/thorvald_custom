@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Polygon1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz/Selection
@@ -304,19 +303,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: robot_description
+      Robot Description: thorvald_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Alpha: 1
-      Class: rviz/Polygon
-      Color: 25; 255; 0
-      Enabled: true
-      Name: Polygon
-      Topic: /move_base/global_costmap/footprint
-      Unreliable: false
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -360,10 +351,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.545397162437439
+      Pitch: 0.5703980326652527
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.248575687408447
+      Yaw: 5.598574638366699
     Saved: ~
 Window Geometry:
   Displays:
@@ -382,4 +373,4 @@ Window Geometry:
     collapsed: false
   Width: 1267
   X: 67
-  Y: 27
+  Y: 30
