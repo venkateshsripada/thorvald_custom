@@ -4,10 +4,10 @@
     <arg name="rvizconfig" default="$(find robot_description)/rviz/thorvald_model.rviz" />
     <arg name="urdf_file" default="$(find xacro)/xacro '$(find robot_description)/urdf/thorvald_urdf.urdf.xacro'"/>
     
-    <!--Gazebo spawnner
+    <!--Gazebo spawnner -->
     <include file="$(find thorvald_gazebo)/launch/thorvald_gazebo.launch">
     </include>
-    -->
+    
 
     <!--Robot Model -->
     <param name="robot_description" command="$(arg urdf_file)"/>
@@ -17,14 +17,13 @@
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
         <param name="use_gui" value="False"/>
     </node>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>
 
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+	<param name="publish_frequency" type="double" value="30.0" />
+    </node>
 
-    <!--Load controllers-->
-    <rosparam command="load"
-            file="$(find robot_description)/config/joints.yaml"
-	    ns="/thorvald"/>
+    <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>-->
+
     
     <!--Controllers-->
     <include file="$(find robot_description)/launch/controllers.launch"/>
