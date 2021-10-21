@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<robot name="thorvald_ii">
+<robot name="thorvald_ii"  xmlns:xacro="http://www.ros.org/wiki/xacro">
   <gazebo>
     <plugin filename="libthorvald_gazebo_plugins_synch.so" name="_thorvald_gazebo_plugins">
       <alwaysOn>true</alwaysOn>
@@ -1416,6 +1416,13 @@
       <robotNamespace>/thorvald</robotNamespace>
     </plugin>
   </gazebo>
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_l515.urdf.xacro" />
+   <xacro:sensor_l515 name="camera" topics_ns="camera" parent="laser_frame" use_nominal_extrinsics="true" publish_pointcloud="true" add_plug="false" use_mesh="true">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:sensor_l515>
+
+
 
 </robot>
 
