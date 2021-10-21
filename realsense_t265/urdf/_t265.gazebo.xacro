@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find realsense_t265)/urdf/_t265_fisheye.gazebo.xacro" />
+
+    <!-- Gazebo sensors and plugins for Realsense T265 Tracking Camera. -->
+    <xacro:macro name="t265_gazebo" params="robot_ns sensor_name rate pose_frame link fisheye1_frame fisheye2_frame gyro_frame odom_body" >
+
+        <!-- Fisheye camera 1. -->
+        <xacro:t265_fisheye
+            sensor_name="${sensor_name}"
+            reference_frame="${fisheye1_frame}"
+            topic="${robot_ns}${sensor_name}/fisheye1"
+            rate="${rate}">
+        </xacro:t265_fisheye>
+
+        <!-- Fisheye camera 2. -->
+        <xacro:t265_fisheye
+            sensor_name="${sensor_name}"
+            reference_frame="${fisheye2_frame}"
+            topic="${robot_ns}${sensor_name}/fisheye2"
+            rate="${rate}">
+        </xacro:t265_fisheye>
+
+        <!-- Gyroscope and accelerometer. -->
+        <gazebo reference="${gyro_frame}">
+            <gravity>true</gravity>
+            <sensor name="${sensor_name}_imu" type="imu">
+                <always_on>true</always_on>
+                <update_rate>${rate}</update_rate>
+                <visualize>false</visualize>
+                <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                    <topicName>${robot_ns}${sensor_name}/gyro/sample</topicName>
+                    <bodyName>${pose_frame}</bodyName>
+                    <updateRateHZ>${rate}</updateRateHZ>
+                    <gaussianNoise>0.000001</gaussianNoise>
+                    <xyzOffset>0 0 0</xyzOffset>
+                    <rpyOffset>0 0 0</rpyOffset>
+                    <frameName>${link}</frameName>
+                </plugin>
+            </sensor>
+        </gazebo>
+
+        <!-- Odometry sensor -->
+        <gazebo> 
+            <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>${rate}</updateRate>
+                <bodyName>${odom_body}</bodyName>
+                <topicName>${robot_ns}${sensor_name}/odom/sample</topicName>
+                <gaussianNoise>0.001</gaussianNoise>
+                <frameName>world</frameName>
+                <xyzOffsets>0 0 0</xyzOffsets>
+                <rpyOffsets>0 0 0</rpyOffsets>
+            </plugin>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

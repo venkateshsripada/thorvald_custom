@@ -1,0 +1,22 @@
+<launch>
+
+  <!-- Spawn URDF model to Gazebo. -->
+  <arg name="model" default="$(find realsense_t265)/xacro/simulation.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <node  name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-z 1.0 -unpause -urdf -model test_model -param robot_description" respawn="false" output="screen" />
+
+  <!-- Gazebo simulation. -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- State publishers. -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+</launch>

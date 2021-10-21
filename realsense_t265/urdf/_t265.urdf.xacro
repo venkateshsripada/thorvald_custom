@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot name="t265" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Includes -->
+    <xacro:include filename="$(find realsense_t265)/urdf/_t265.gazebo.xacro" />
+
+    <!-- Camera model -->
+    <xacro:macro name="realsense_t265" params="robot_ns sensor_name parent_link rate *origin">
+
+        <!-- Origin of the model -->
+        <link name="${sensor_name}_odom_frame"/>
+        <joint name="${sensor_name}_odom_frame_joint" type="fixed">
+            <parent link="${parent_link}"/>
+            <child link="${sensor_name}_odom_frame"/>
+            <xacro:insert_block name="origin"/>
+        </joint>
+
+        <!-- Main body of the camera -->
+        <link name="${sensor_name}_pose_frame">
+            <visual>
+                <!-- STL file is wrongly rotated and scaled to meters instead of millimeters. -->
+                <origin rpy="1.57 0 1.57" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="$(find realsense_t265)/meshes/t265.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.013 0.108 0.024"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="0.055"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <inertia ixx="9.108e-05"
+                        ixy="0"
+                        ixz="0"
+                        iyy="2.51e-06"
+                        iyz="0"
+                        izz="8.931e-05"/>
+            </inertial>
+        </link>
+        <joint name="${sensor_name}_pose_frame_joint" type="fixed">
+            <parent link="${sensor_name}_odom_frame"/>
+            <child link="${sensor_name}_pose_frame"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/> <!-- TODO: check on real hw. -->
+        </joint>
+
+        <link name="${sensor_name}_link"/>
+        <joint name="${sensor_name}_joint" type="fixed">
+            <parent link="${sensor_name}_pose_frame"/>
+            <child link="${sensor_name}_link"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/> <!-- TODO: check on real hw. -->
+        </joint>
+
+        <!-- Fisheye camera 1 -->
+        <link name="${sensor_name}_fisheye1_frame"/>
+        <joint name="${sensor_name}_fisheye1_joint" type="fixed">
+            <parent link="${sensor_name}_link"/>
+            <child link="${sensor_name}_fisheye1_frame"/>
+            <origin rpy="0 0 0" xyz="0 0.042 0"/>
+        </joint>
+
+        <link name="${sensor_name}_fisheye1_optical_frame"/>
+        <joint name="${sensor_name}_fisheye1_optical_joint" type="fixed">
+            <parent link="${sensor_name}_fisheye1_frame"/>
+            <child link="${sensor_name}_fisheye1_optical_frame"/>
+            <origin rpy="0 0 0" xyz="0.01 0 0"/>
+        </joint>
+
+        <!-- Fisheye camera 2 -->
+        <link name="${sensor_name}_fisheye2_frame"/>
+        <joint name="${sensor_name}_fisheye2_joint" type="fixed">
+            <parent link="${sensor_name}_link"/>
+            <child link="${sensor_name}_fisheye2_frame"/>
+            <origin rpy="0 0 0" xyz="0 -0.022 0"/>
+        </joint>
+
+        <link name="${sensor_name}_fisheye2_optical_frame"/>
+        <joint name="${sensor_name}_fisheye2_optical_joint" type="fixed">
+            <parent link="${sensor_name}_fisheye2_frame"/>
+            <child link="${sensor_name}_fisheye2_optical_frame"/>
+            <origin rpy="0 0 0" xyz="0.01 0 0"/>
+        </joint>
+
+        <!-- Gyroscope -->
+        <link name="${sensor_name}_gyro_frame"/>
+        <joint name="${sensor_name}_gyro_joint" type="fixed">
+            <parent link="${sensor_name}_link"/>
+            <child link="${sensor_name}_gyro_frame"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/> <!-- TODO: check on real hw. -->
+        </joint>
+
+        <!-- Accelerometer -->
+        <!-- Note: IMU inlcudes gyroscope and accelerometer in a single sensor, so this is probably not useful. -->
+        <link name="${sensor_name}_accel_frame"/>
+        <joint name="${sensor_name}_accel_joint" type="fixed">
+            <parent link="${sensor_name}_link"/>
+            <child link="${sensor_name}_accel_frame"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/> <!-- TODO: check on real hw. -->
+        </joint>
+
+        <xacro:t265_gazebo
+            robot_ns="${robot_ns}"
+            sensor_name="${sensor_name}"
+            rate="${rate}"
+            pose_frame="{sensor_name}_pose_frame"
+            link="{sensor_name}_link"
+            fisheye1_frame="${sensor_name}_fisheye1_optical_frame"
+            fisheye2_frame="${sensor_name}_fisheye2_optical_frame"
+            gyro_frame="${sensor_name}_gyro_frame"
+            odom_body="${sensor_name}_odom_frame"
+            />
+
+  </xacro:macro>
+
+</robot>

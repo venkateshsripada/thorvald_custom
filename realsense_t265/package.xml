@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>realsense_t265</name>
+  <version>1.0.0</version>
+
+  <description>Intel Realsense T625 Tracking Camera</description>
+
+  <author email="25933576@students.lincoln.ac.uk">Giorgio Bonvicini</author>
+
+  <license>Apache 2.0</license>
+
+  <maintainer email="25933576@students.lincoln.ac.uk">Giorgio Bonvicini</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>gazebo</exec_depend>
+  <exec_depend>xacro</exec_depend>
+</package>
