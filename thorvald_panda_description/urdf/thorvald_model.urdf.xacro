@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<robot name="thorvald_ii">
+<robot name="thorvald_ii" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find realsense_t265)/urdf/_t265.urdf.xacro"/>
+
   <gazebo>
     <plugin filename="libthorvald_gazebo_plugins_synch.so" name="_thorvald_gazebo_plugins">
       <alwaysOn>true</alwaysOn>
@@ -1416,6 +1419,11 @@
       <robotNamespace>/thorvald</robotNamespace>
     </plugin>
   </gazebo>
+
+  <!-- Sensors. -->
+  <xacro:realsense_t265 robot_ns="thorvald/" sensor_name="t265_camera" parent_link="imu_frame" rate="30.0">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </xacro:realsense_t265>
 
 </robot>
 
