@@ -33,7 +33,7 @@
   </joint>
 
 
-  <xacro:realsense_t265 sensor_name="t265_camera" parent_link="base_link" rate="30.0">
+  <xacro:realsense_t265 robot_ns="" sensor_name="t265_camera" parent_link="base_link" rate="30.0">
     <origin rpy="0 0 0" xyz="0 0 0.5"/>
   </xacro:realsense_t265>
 

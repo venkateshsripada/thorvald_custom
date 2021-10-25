@@ -9,7 +9,7 @@
         <xacro:t265_fisheye
             sensor_name="${sensor_name}"
             reference_frame="${fisheye1_frame}"
-            topic="${robot_ns}${sensor_name}/fisheye1"
+            topic="${robot_ns}/${sensor_name}/fisheye1"
             rate="${rate}">
         </xacro:t265_fisheye>
 
@@ -17,7 +17,7 @@
         <xacro:t265_fisheye
             sensor_name="${sensor_name}"
             reference_frame="${fisheye2_frame}"
-            topic="${robot_ns}${sensor_name}/fisheye2"
+            topic="${robot_ns}/${sensor_name}/fisheye2"
             rate="${rate}">
         </xacro:t265_fisheye>
 
@@ -29,7 +29,7 @@
                 <update_rate>${rate}</update_rate>
                 <visualize>false</visualize>
                 <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-                    <topicName>${robot_ns}${sensor_name}/gyro/sample</topicName>
+                    <topicName>${robot_ns}/${sensor_name}/gyro/sample</topicName>
                     <bodyName>${pose_frame}</bodyName>
                     <updateRateHZ>${rate}</updateRateHZ>
                     <gaussianNoise>0.000001</gaussianNoise>
@@ -46,7 +46,7 @@
                 <alwaysOn>true</alwaysOn>
                 <updateRate>${rate}</updateRate>
                 <bodyName>${odom_body}</bodyName>
-                <topicName>${robot_ns}${sensor_name}/odom/sample</topicName>
+                <topicName>${robot_ns}/${sensor_name}/odom/sample</topicName>
                 <gaussianNoise>0.001</gaussianNoise>
                 <frameName>world</frameName>
                 <xyzOffsets>0 0 0</xyzOffsets>
