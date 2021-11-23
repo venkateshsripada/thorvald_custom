@@ -19,11 +19,31 @@
         <param name="use_gui" value="false"/>
     </node> -->
 
+    <!--Path to tobot configuration file
+       This file list modules on a given robot with key parameters like position in the base_link frame, gear ratios, etc.
+       The robot description is then automatically generated from this file.
+       Many examples are found in the thorvald_description package -->
+    <arg name="robot_model" default="$(find thorvald_description)/config/thorvald_ii_4wd4ws_std/thorvald_ii_4wd4ws_std.yaml" />
+    <arg name="joint_states_remap_to" default="base_driver/joint_states" />
+
     <!-- for model updates in rviz -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
     
 	<!--Load controllers to param server -->
 	<rosparam command="load" file="$(find thorvald_panda_description)/config/joints.yaml" ns="/thorvald"/>
+
+    <!-- Twist mux args
+       twist and lock topics to be used by twist_mux, command multiplexer -->
+      <arg name="twist_mux_topics" value="$(find thorvald_twist_mux)/config/twist_mux_topics.yaml" />
+      <arg name="twist_mux_locks" value="$(find thorvald_twist_mux)/config/twist_mux_locks.yaml" />
+
+    <!-- Teleop args
+       The teleop node can be used with different hardware, and can also be configured to call any number of std_srvs/Trigger services.
+       You can use xbox.yaml from thorvald_teleop as an example when configuring your own controller -->
+      <arg name="joy_dev" default="/dev/input/js0" />
+      <arg name="joy_autorepeat_rate" value="20" />
+      <arg name="joy_deadzone" value="0.2" />
+      <arg name="teleop_controller" value="$(find thorvald_teleop)/config/xbox.yaml" />
 
 	 <!-- Spawn the controller -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/thorvald"
@@ -43,5 +63,27 @@
 
 	--timeout 60">
     </node>
+
+
+        <node pkg="thorvald_base" type="base_driver" name="base_driver" output="screen">
+            <rosparam command="load" file="$(arg robot_model)" />
+            <remap from="cmd_vel" to="twist_mux/cmd_vel" />
+            <remap from="joint_states" to="$(arg joint_states_remap_to)" />
+        </node>
+    
+      <!-- Twist mux bringup -->
+      <include file="$(find thorvald_twist_mux)/launch/twist_mux.launch">
+        <arg name="config_topics" value="$(arg twist_mux_topics)" />
+        <arg name="config_locks" value="$(arg twist_mux_locks)" />
+      </include>
+
+      <!-- Teleop bringup
+      <include file="$(find thorvald_teleop)/launch/teleop.launch">
+        <arg name="joy_dev" value="$(arg joy_dev)" />
+        <arg name="joy_autorepeat_rate" value="$(arg joy_autorepeat_rate)" />
+        <arg name="joy_deadzone" value="$(arg joy_deadzone)" />
+        <arg name="teleop_controller" value="$(arg teleop_controller)" />
+      </include>
+        -->
 
 </launch>

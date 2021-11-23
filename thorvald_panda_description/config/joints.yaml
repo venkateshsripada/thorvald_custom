@@ -3,6 +3,8 @@ joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
 
+# Base calculator is used for calculating joint commands from velocity commands goven in the base_link frame, and for calculating odometry from actual joint states
+base_calculator: "pltf_clc_std::PltfClcStd"
 
 # Position Controllers ---------------------------------------
 steering0_position_controller:
