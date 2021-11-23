@@ -65,17 +65,19 @@
     </node>
 
 
-        <node pkg="thorvald_base" type="base_driver" name="base_driver" output="screen">
-            <rosparam command="load" file="$(arg robot_model)" />
-            <remap from="cmd_vel" to="twist_mux/cmd_vel" />
-            <remap from="joint_states" to="$(arg joint_states_remap_to)" />
-        </node>
+    <node pkg="thorvald_base" type="base_driver" name="base_driver" output="screen">
+        <rosparam command="load" file="$(arg robot_model)" />
+        <remap from="cmd_vel" to="twist_mux/cmd_vel" />
+        <remap from="joint_states" to="$(arg joint_states_remap_to)" />
+    </node>
     
       <!-- Twist mux bringup -->
       <include file="$(find thorvald_twist_mux)/launch/twist_mux.launch">
         <arg name="config_topics" value="$(arg twist_mux_topics)" />
         <arg name="config_locks" value="$(arg twist_mux_locks)" />
       </include>
+
+      <node pkg="tf" type="static_transform_publisher" name="base_link2laser_link"     args="-0.05 0 0.05 0 0 0 /base_link /base_scan 30"/>
 
       <!-- Teleop bringup
       <include file="$(find thorvald_teleop)/launch/teleop.launch">
